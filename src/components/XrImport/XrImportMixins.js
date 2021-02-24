@@ -71,7 +71,8 @@ export default {
     secondQueryNum(messageId) {
       crmQueryImportNumAPI({ messageId: messageId })
         .then(res => {
-          if (res.data === null) { // 结束 否则 进行中
+          // 修复导入错误完成提示 DT27@2021-02-18 10:23:46
+          if (res.data === null || res.data === 0) { // 结束 否则 进行中
             this.crmImportStatus = 'finish'
             this.cacheDone = true
           } else {

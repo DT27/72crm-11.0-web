@@ -58,7 +58,7 @@
                 :id="id"
                 :handle="activityHandle"
                 :crm-type="crmType"
-                @on-handle="detailHeadHandle" />
+                @on-handle="detailHeadHandle"/>
             </el-tab-pane>
           </el-tabs>
         </div>
@@ -195,7 +195,10 @@ export default {
         tempsTabs.push({ label: this.getTabName('产品', this.tabsNumber.productCount), name: 'RelativeProduct' })
       }
       if (this.crm.receivables && this.crm.receivables.index) {
-        tempsTabs.push({ label: this.getTabName('回款', this.tabsNumber.receivablesCount), name: 'RelativeReturnMoney' })
+        tempsTabs.push({
+          label: this.getTabName('回款', this.tabsNumber.receivablesCount),
+          name: 'RelativeReturnMoney'
+        })
       }
       if (this.crm.visit && this.crm.visit.index) {
         tempsTabs.push({ label: this.getTabName('回访', this.tabsNumber.returnVisitCount), name: 'RelativeVisit' })
@@ -325,12 +328,35 @@ export default {
      */
     detailHeadHandleClick(data) {
       if (data.type === 'edit') {
+        // 使审核中及审核通过的合同可继续编辑 DT27@2021-02-21 07:54:49
         if (this.detailData.check_status === 2) {
-          this.$message.error('已通过的合同作废后才可编辑')
-          return false
+          this.$confirm('此合同已审核通过，确定要编辑吗？', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          })
+            .then(() => {
+              this.createAction = { type: 'update', id: this.id, batchId: this.detailData.batchId }
+            })
+            .catch(() => {
+              return false
+            })
+          // this.$message.error('已通过的合同作废后才可编辑')
+          // return false
         } else if (this.detailData.check_status === 1) {
-          this.$message.error('审核中的合同撤回后才可编辑')
-          return false
+          this.$confirm('此合同正在审核中，确定要编辑吗？', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          })
+            .then(() => {
+              this.createAction = { type: 'update', id: this.id, batchId: this.detailData.batchId }
+            })
+            .catch(() => {
+              return false
+            })
+          // this.$message.error('审核中的合同撤回后才可编辑')
+          // return false
         } else {
           this.createAction = { type: 'update', id: this.id, batchId: this.detailData.batchId }
         }
@@ -351,8 +377,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../styles/crmdetail.scss';
-.is-invalid {
-  color: #ccc;
-}
+  @import '../styles/crmdetail.scss';
+
+  .is-invalid {
+    color: #ccc;
+  }
 </style>

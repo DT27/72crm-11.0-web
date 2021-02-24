@@ -61,7 +61,8 @@ export default {
     },
 
     detailData() {
-      if (this.$refs.crmDetailMain && this.$refs.crmDetailMain.style.background == 'white') {
+      if (this.$refs.crmDetailMain &&
+        this.$refs.crmDetailMain.style.background == 'white') {
         this.$refs.crmDetailMain.style.background = 'inherit'
       }
     }
@@ -115,7 +116,8 @@ export default {
     /**
      * 详情操作
      */
-    detailHeadHandleClick() {},
+    detailHeadHandleClick() {
+    },
 
     /**
      * 编辑成功
@@ -147,12 +149,10 @@ export default {
       const params = {}
       params[this.crmType + `_id`] = this.id
 
-      request(params)
-        .then(res => {
-          this.tabsNumber = res.data || {}
-        })
-        .catch(() => {
-        })
+      request(params).then(res => {
+        this.tabsNumber = res.data || {}
+      }).catch(() => {
+      })
     },
 
     /**
@@ -195,6 +195,7 @@ export default {
     }
   },
 
-  deactivated: function() { }
+  deactivated: function() {
+  }
 
 }

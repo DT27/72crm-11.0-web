@@ -318,7 +318,7 @@ export function getFileTypeWithExt(ext) {
       return 'video'
     } else if (['mp3', 'wma', 'wav'].includes(ext)) {
       return 'audio'
-    } else if (['xlsx', 'xls'].includes(ext)) {
+    } else if (['xlsx', 'xls', 'csv'].includes(ext)) {
       return 'excel'
     } else if (['doc', 'docx'].includes(ext)) {
       return 'word'

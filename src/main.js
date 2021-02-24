@@ -99,12 +99,6 @@ Vue.use(empty)
 import debounce from './directives/clickDebounce'
 Vue.use(debounce)
 
-// 表情
-import {
-  emoji
-} from './utils/emoji'
-Vue.prototype.emoji = emoji
-
 Vue.config.productionTip = false
 
 window.app = new Vue({

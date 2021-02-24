@@ -34,7 +34,6 @@
             </span>
           </div>
         </div>
-        <div class="content" v-html="emoji(item.content)" />
         <reply-comment
           v-if="replyIndex === String(index)"
           @reply="handleReply"
@@ -76,7 +75,6 @@
               <span>
                 回复 @{{ child.replyuserInfo.realname }}：
               </span>
-              <span class="content" v-html="emoji(child.content)" />
             </div>
             <reply-comment
               v-loading="commentLoading"

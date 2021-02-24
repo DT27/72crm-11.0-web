@@ -1,5 +1,6 @@
 'use strict'
 const path = require('path')
+const webpack = require('webpack')
 const utils = require('./utils')
 const config = require('../config')
 const {
@@ -46,6 +47,12 @@ module.exports = {
     alias: {
       '@': resolve('src')
     }
+  },
+  externals: {
+    'axios': 'axios',
+    'moment': 'moment',
+    'numeral': 'numeral',
+    'nprogress': 'NProgress'
   },
   module: {
     rules: [
@@ -102,7 +109,13 @@ module.exports = {
       }
     ]
   },
-  plugins: [new VueLoaderPlugin()],
+  plugins: [
+    new VueLoaderPlugin(),
+    new webpack.DllReferencePlugin({
+      context: path.resolve(__dirname, '..'),
+      manifest: require('./manifest.json')
+    })
+  ],
   node: {
     // prevent webpack from injecting useless setImmediate polyfill because Vue
     // source contains it (although only uses it if it's native).

@@ -1,5 +1,4 @@
-import numeral from 'numeral'
-import 'numeral/locales'
+// import numeral from 'numeral'
 
 import {
   abbreviate,
@@ -14,7 +13,7 @@ import {
 
 const vueNumeralFilterInstaller = {
   install(vue, { locale = 'en-gb' } = {}) {
-    numeral.locale(locale)
+    // numeral.locale(locale)
 
     vue.filter('abbreviate', abbreviate)
     vue.filter('bytes', bytes)

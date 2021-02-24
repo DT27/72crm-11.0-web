@@ -11,18 +11,7 @@
         type="textarea"
         placeholder="请输入回复内容"
         @blur="blurFun" />
-      <div class="btn-group">
-        <el-popover
-          v-model="showEmoji"
-          placement="top"
-          width="400"
-          trigger="click">
-          <!-- 表情 -->
-          <emoji @select="selectEmoji" />
-          <i
-            slot="reference"
-            class="wk wk-expression smiling-img" />
-        </el-popover>
+      <div class="btn-group">、
         <div class="btn-box">
           <el-button
             type="primary"
@@ -50,19 +39,14 @@
  * public fn:  toggleFocus 切换输入框状态
  */
 import xss from 'xss'
-import Emoji from '@/components/Emoji'
 
 export default {
   name: 'ReplyComment',
-  components: {
-    Emoji
-  },
   data() {
     return {
       commentLoading: false, // 回复loading
       blurIndex: 0, // 回复表情插入位置
       commentsTextarea: '', // 回复内容
-      showEmoji: false, // emoji选择标志
       showNoFocus: false
     }
   },
@@ -72,17 +56,6 @@ export default {
      */
     blurFun(eve) {
       this.blurIndex = eve.target.selectionEnd
-    },
-    /**
-     * emoji 表情选择
-     */
-    selectEmoji(val) {
-      if (this.commentsTextarea && this.commentsTextarea.length + val.length <= 2000 || !this.commentsTextarea) {
-        const list = this.commentsTextarea.split('')
-        list.splice(this.blurIndex, 0, val)
-        this.commentsTextarea = list.join('')
-        this.showEmoji = false
-      }
     },
     /**
      * 提交评论回复
@@ -98,7 +71,6 @@ export default {
      * 关闭评论回复框
      */
     closeComment() {
-      this.showEmoji = false
       this.$emit('close')
       this.toggleFocus()
     },

@@ -592,8 +592,6 @@ import MembersDep from '@/components/SelectEmployee/MembersDep'
 import TagIndex from './Tag/TagIndex'
 import SubTask from './SubTask'
 
-// emoji
-import Emoji from '@/components/Emoji'
 // 相关信息 - 选中列表
 import RelatedBusiness from '@/components/RelatedBusiness'
 import { XhUserCell } from '@/components/CreateCom'
@@ -610,7 +608,6 @@ export default {
   components: {
     SlideView,
     MembersDep,
-    Emoji,
     RelatedBusiness,
     TagIndex,
     CRMFullScreenDetail: () =>
