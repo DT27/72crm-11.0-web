@@ -108,12 +108,12 @@ const webpackConfig = merge(baseWebpackConfig, {
           test: /[\\/]node_modules[\\/]/,
           priority: 10,
           chunks: 'initial' // 只打包初始时依赖的第三方
-        },
+        }/*,
         elementUI: {
           name: 'chunk-elementUI', // 单独将 elementUI 拆包
           priority: 20, // 权重要大于 libs 和 app 不然会被打包进 libs 或者 app
           test: /[\\/]node_modules[\\/]element-ui[\\/]/
-        }
+        }*/
       }
     },
     runtimeChunk: 'single',
@@ -124,7 +124,7 @@ const webpackConfig = merge(baseWebpackConfig, {
             safari10: true
           },
           compress: {
-            drop_console: true
+            drop_console: false
           }
         },
         sourceMap: config.build.productionSourceMap,

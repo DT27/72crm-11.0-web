@@ -130,7 +130,7 @@ export default {
     if (this.crm[this.crmType] && this.crm[this.crmType].excelimport && !this.isSeas) {
       this.moreTypes.push({ type: 'enter', name: '导入', icon: 'import' })
     }
-    if (this.crm[this.crmType] && this.crm[this.crmType].excelexport) {
+    if ((this.crm[this.crmType] && this.crm[this.crmType].excelexport) || this.crmType === 'receivables') {
       this.moreTypes.push({ type: 'out', name: '导出', icon: 'export' })
     }
 
