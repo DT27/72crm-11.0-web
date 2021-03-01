@@ -116,8 +116,7 @@ export default {
     /**
      * 详情操作
      */
-    // detailHeadHandleClick() {
-    // },
+    detailHeadHandleClick() {},
 
     /**
      * 编辑成功
