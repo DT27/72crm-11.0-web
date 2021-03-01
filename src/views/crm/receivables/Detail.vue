@@ -190,13 +190,25 @@ export default {
       this.$emit('hide-view')
     },
 
-    // /**
-    //  * 编辑成功
-    //  */
-    // editSaveSuccess() {
-    //   this.$emit('handle', { type: 'save-success' })
-    //   this.getDetial()
-    // },
+    /**
+     * 编辑成功
+     */
+    editSaveSuccess() {
+      this.$bus.$emit('crm-detail-update', this.crmType)
+      this.$emit('handle', { type: 'save-success' })
+      this.detailData = null
+      this.getDetial()
+    },
+
+    /**
+     * 详情操作
+     */
+    detailHeadHandleClick(data) {
+      if (data.type === 'edit') {
+        // 使审核中及审核通过的回款可继续编辑 DT27@2021-03-01 09:51:47
+        this.createAction = { type: 'update', id: this.id, batchId: this.detailData.batchId }
+      }
+    },
 
     /**
      * 审核操作
