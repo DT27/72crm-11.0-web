@@ -200,13 +200,14 @@ export default {
             temp.inputTips = item.input_tips
             temp.name = item.name
             temp.setting = item.setting
-            temp.value = item.value
             const canEdit = this.getItemIsCanEdit(item, this.action.type)
             // 是否能编辑权限
             if (canEdit) {
               // 自动生成编号
               if (item.autoGeneNumber == 1) {
                 temp.placeholder = '根据编号规则自动生成，支持手动输入'
+                temp.value = item.value ? item.value : 'ZN-HT-' + (new Date().getFullYear()) + '-'
+                //item.value = 'ZN-HT-' + (new Date().getFullYear())
                 const copyItem = objDeepCopy(item)
                 copyItem.isNull = 0
                 fieldRules[temp.field] = this.getRules(copyItem)
